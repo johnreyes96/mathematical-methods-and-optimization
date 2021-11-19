@@ -18,7 +18,7 @@ def objectiveFunctionGraph():
     plt.show()
 
 
-objectiveFunctionGraph()
+# objectiveFunctionGraph()
 
 
 def U(T):
@@ -45,8 +45,10 @@ def goldenSectionSearch():
         fx2 = U(x2)
         cont = cont + 1
         print("I: {:02d} - xi: {:.4f} - D: {:.4f} - x1: {:.4f} - x2: {:.4f} - f(x1): {:.4f} - f(x2): {:.4f} - "
-              "Error: {:.4f}    |- {:.5f} --- {:.5f} --- {:.5f} --- {:.5f} -|".format(cont, xi, d, x1, x2, fx1, fx2,
-                                                                                      abs(x1 - x2), xi, x2, x1, xs))
+              "xu: {:.4f} - Error: {:.4f}    |- {:.5f} --- {:.5f} --- {:.5f} --- {:.5f} -|".format(cont, xi, d, x1, x2,
+                                                                                                   fx1, fx2, xs,
+                                                                                                   abs(x1 - x2), xi, x2,
+                                                                                                   x1, xs))
 
         if fx1 < fx2:
             xs = x1
