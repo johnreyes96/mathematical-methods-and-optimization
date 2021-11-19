@@ -11,17 +11,16 @@ def objectiveFunctionGraph():
     U = -1.5 * T ** 6 - 2 * T ** 4 + 12 * T
 
     plt.plot(T, U, 'b')
-    plt.plot(1, 8, 'ko')
-    plt.annotate(r'$8.697929$', (8.697929, 0.88), (1, 8))
+    plt.plot(1, 9, 'ko')
+    plt.annotate(r'$8.697929$', (1, 9), (1, 9))
 
     plt.grid()
     plt.show()
 
 
-# objectiveFunctionGraph()
+objectiveFunctionGraph()
 
 
-# Objective function
 def U(T):
     return -1.5 * T ** 6 - 2 * T ** 4 + 12 * T
 
@@ -33,32 +32,29 @@ def isRemoveLastNumberOfArray(array, newValue):
         return False
 
 
-def GoldenSectionSearch():
+def goldenSectionSearch():
     xi = 0
     xs = 2
-    epsilon = 1e-3
     cont = 0
 
     while True:
         d = ((math.sqrt(5) - 1) / 2) * (xs - xi)
-        # if cont == 0:
         x1 = xi + d
         x2 = xs - d
-        cont = cont + 1
-        print("I: {:02d}   |- {:.5f} --- {:.5f} --- {:.5f} --- {:.5f} -|".format(cont, xi, x2, x1, xs))
         fx1 = U(x1)
         fx2 = U(x2)
+        cont = cont + 1
+        print("I: {:02d} - xi: {:.4f} - D: {:.4f} - x1: {:.4f} - x2: {:.4f} - f(x1): {:.4f} - f(x2): {:.4f} - "
+              "Error: {:.4f}    |- {:.5f} --- {:.5f} --- {:.5f} --- {:.5f} -|".format(cont, xi, d, x1, x2, fx1, fx2,
+                                                                                      abs(x1 - x2), xi, x2, x1, xs))
 
         if fx1 < fx2:
             xs = x1
         else:
             xi = x2
 
-        # if np.abs(U_alpha1 - U_alpha2) < epsilon:
-        #     print("-------------------------------------------------------")
-        #     print("It: {:02d} - Temp: {:.10f} - Costo: {:.10f} - {:.10f} - {:.10f}".format(cont, alpha1, U_alpha1, alpha2, U_alpha2))
         if cont == 3:
             break
 
 
-GoldenSectionSearch()
+goldenSectionSearch()
