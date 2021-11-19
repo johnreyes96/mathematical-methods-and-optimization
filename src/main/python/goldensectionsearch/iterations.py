@@ -18,18 +18,11 @@ def objectiveFunctionGraph():
     plt.show()
 
 
-# objectiveFunctionGraph()
+objectiveFunctionGraph()
 
 
 def U(T):
     return -1.5 * T ** 6 - 2 * T ** 4 + 12 * T
-
-
-def isRemoveLastNumberOfArray(array, newValue):
-    if array.index(newValue) == 1:
-        return True
-    else:
-        return False
 
 
 def goldenSectionSearch():
