@@ -29,7 +29,6 @@ def goldenSectionSearch():
     xi = 0
     xs = 2
     cont = 0
-
     while True:
         d = ((math.sqrt(5) - 1) / 2) * (xs - xi)
         x1 = xi + d

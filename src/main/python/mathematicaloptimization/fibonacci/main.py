@@ -6,24 +6,25 @@ def GraficarFuncionObjetivo():
     a, b = 40, 90
 
     T = np.linspace(a, b, 100)
-    U = (204165.5) / (330 - 2 * T) + (10400) / (T - 20)
+    U = 204165.5 / (330 - 2 * T) + 10400 / (T - 20)
 
     plt.figure(figsize=(6, 3))
     plt.plot(T, U, 'b')
     plt.plot(55.08, 1225.17, 'ko')
     plt.annotate(r'$55.08, 1225.17$', (55.08, 1225.17), (50, 1250))
-
     plt.xlabel("Temperatura")
     plt.ylabel("Costo")
     plt.grid()
     plt.show()
-
     return None
+
 
 GraficarFuncionObjetivo()
 
+
 def U(T):
-    return (204165.5)/(330-2*T) + (10400)/(T-20)
+    return 204165.5 / (330 - 2 * T) + 10400 / (T - 20)
+
 
 U(55.08)
 
@@ -49,12 +50,12 @@ def Fibonacci(*params):
     U_xa = U(xa)
     U_xb = U(xb)
 
-    if (U_xa > U_xb):
+    if U_xa > U_xb:
         a = xa
     else:
         b = xb
 
-    if (np.abs(U_xa - U_xb) > ep):
+    if np.abs(U_xa - U_xb) > ep:
         k = k + 1
         it = it + 1
 
@@ -82,6 +83,7 @@ def RunFibonacci():
 
     return Fibonacci(a, b, k, 0, [], b - a, n, fs, 1e-6)
 
+
 reg = RunFibonacci()
 
 
@@ -108,5 +110,6 @@ def Evaluacion(reg):
     plt.show()
 
     return None
+
 
 Evaluacion(reg)
