@@ -19,7 +19,7 @@ def isRemoveLastNumberOfArray(array, newValue):
 xValues = []
 
 for index in range(0, 3):
-    xValue = float(input("Introduce el valor para x[" + str(index) + "] "))
+    xValue = float(input("Introduce el valor para x[" + str(index) + "] "))  # 0.1 - 0.5 - 5
     xValues.append(xValue)
 
 for iterator in range(1, 11):
