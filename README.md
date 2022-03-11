@@ -1,5 +1,5 @@
-# Numerical methods and mathematical optimization
-Repository of formulas and procedures of numerical methods and mathematical optimization done in Python.
+# Numerical methods, mathematical optimization and operations research
+Repository of formulas and procedures of numerical methods, mathematical optimization and operations research done in Python and Jupyter Notebook.
 
 ## Numerical methods
 * Newpthon Raphson modified
@@ -24,3 +24,6 @@ Repository of formulas and procedures of numerical methods and mathematical opti
 * Golden section search
 * Fibonacci method
 * Quadratic interpolation method
+
+## Operations research
+* Minimum spanning tree
