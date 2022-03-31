@@ -26,4 +26,7 @@ Repository of formulas and procedures of numerical methods, mathematical optimiz
 * Quadratic interpolation method
 
 ## Operations research
-* Minimum spanning tree
+* Minimum spanning tree (Prim's algorithm)
+* Shortest path problem (Dijkstra's algorithm)
+* Maximum flow problem (Ford-Fulkerson algorithm)
+* Critical path method (CPM)
