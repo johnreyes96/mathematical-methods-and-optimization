@@ -1,5 +1,5 @@
 # Numerical methods, mathematical optimization and operations research
-Repository of formulas and procedures of numerical methods, mathematical optimization and operations research done in Python and Jupyter Notebook.
+Repository of formulas and procedures of numerical methods, mathematical optimization and operations research realized in Python and Jupyter Notebook.
 
 ## Numerical methods
 * Newpthon Raphson modified
@@ -29,4 +29,4 @@ Repository of formulas and procedures of numerical methods, mathematical optimiz
 * Minimum spanning tree (Prim's algorithm)
 * Shortest path problem (Dijkstra's algorithm)
 * Maximum flow problem (Ford-Fulkerson algorithm)
-* Critical path method (CPM)
+* Critical path method (CPM) (Soon)
