@@ -27,6 +27,7 @@ Repository of formulas and procedures of numerical methods, mathematical optimiz
 
 ## Operations research
 * Minimum spanning tree (Prim's algorithm)
+* Minimum spanning tree (Kruskal algorithm) (Soon)
 * Shortest path problem (Dijkstra's algorithm)
 * Maximum flow problem (Ford-Fulkerson algorithm)
 * Critical path method (CPM) (Soon)
