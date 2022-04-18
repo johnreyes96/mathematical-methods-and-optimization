@@ -31,3 +31,5 @@ Repository of formulas and procedures of numerical methods, mathematical optimiz
 * Shortest path problem (Dijkstra's algorithm)
 * Maximum flow problem (Ford-Fulkerson algorithm)
 * Critical path method (CPM) (Soon)
+* Nearest neighbor algorithm (Soon)
+* Christofides algorithm (Christofides–Serdyukov algorithm) (Soon)
