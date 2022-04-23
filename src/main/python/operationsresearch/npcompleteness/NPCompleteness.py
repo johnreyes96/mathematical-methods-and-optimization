@@ -54,7 +54,14 @@ def getHamiltonianCycle(cycle):
 
 
 def getWeightFromHamiltonianCycle(formattedHamiltonianCycle):
-    return 0
+    nodesLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+    hamiltonianCycle = formattedHamiltonianCycle.split("-")
+    weight = 0
+    for nodeIndex in range(len(hamiltonianCycle) - 1):
+        rowIndex = nodesLetters.index(hamiltonianCycle[nodeIndex])
+        rowColumn = nodesLetters.index(hamiltonianCycle[nodeIndex+1])
+        weight += adjacencyMatrix[rowIndex][rowColumn]
+    return weight
 
 
 def sortHamiltonianCyclesByWeight(hamiltonianCyclesList):
@@ -69,4 +76,7 @@ nodesTotal = len(adjacencyMatrix)
 hamiltonianCycles = bruteForceSearch(nodesTotal)
 hamiltonianCycles.sort(key=sortHamiltonianCyclesByWeight)
 print(*hamiltonianCycles, sep="\n")
-print("Cantidad de ciclos Hamiltonianos: " + str(len(hamiltonianCycles)))
+print("Cantidad de ciclos Hamiltonianos repetidos: " + str(len(hamiltonianCycles)))
+hamiltonianCycleLessWeight = hamiltonianCycles[0]
+print("El ciclo Hamiltoniano de menor peso es: " + str(hamiltonianCycleLessWeight["cycle"]) + " con un peso de: " +
+      str(hamiltonianCycleLessWeight["weight"]))
