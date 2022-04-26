@@ -100,8 +100,9 @@ def runHamiltonianCycleAlgorithm():
     hamiltonianCyclesDistinct = unique(hamiltonianCycles)
     hamiltonianCyclesDistinct.sort(key=sortHamiltonianCyclesByWeight)
     print(*hamiltonianCyclesDistinct, sep="\n")
+    print("")
     # print("Cantidad de ciclos Hamiltonianos repetidos: " + str(len(hamiltonianCycles)))
-    print("\nCantidad de ciclos Hamiltonianos diferentes: " + str(len(hamiltonianCyclesDistinct)))
+    print("Cantidad de ciclos Hamiltonianos diferentes: " + str(len(hamiltonianCyclesDistinct)))
     hamiltonianCycleLessWeight = hamiltonianCyclesDistinct[0]
     print("El ciclo Hamiltoniano de menor peso es: " + str(hamiltonianCycleLessWeight["cycle"]) + " con un peso de: " +
           str(hamiltonianCycleLessWeight["weight"]))
@@ -109,8 +110,10 @@ def runHamiltonianCycleAlgorithm():
 
 matrix3x3 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 matrix4x4 = np.array([[0, 5, 9, 7], [0, 0, 4, 10], [0, 0, 0, 12], [0, 0, 0, 0]])
+matrix5x5 = np.array([[0, 4, 13, 15, 4], [0, 0, 7, 20, 35], [0, 0, 0, 22, 24], [0, 0, 0, 0, 10], [0, 0, 0, 0, 0]])
+matrix6x6 = np.array([[0, 4, 13, 26, 90, 40], [0, 0, 7, 50, 35, 6], [0, 0, 0, 22, 24, 30], [0, 0, 0, 0, 10, 180], [0, 0, 0, 0, 0, 16], [0, 0, 0, 0, 0, 0]])
 matrix7x7 = np.array([[0, 4, 13, 15, 28, 40, 24], [0, 0, 7, 20, 35, 6, 42], [0, 0, 0, 22, 24, 30, 10], [0, 0, 0, 0, 10, 20, 25], [0, 0, 0, 0, 0, 16, 18], [0, 0, 0, 0, 0, 0, 5], [0, 0, 0, 0, 0, 0, 0]])
 matrix7x7_2 = np.array([[0, 10, 18, 5, 30, 40, 30], [0, 0, 15, 20, 35, 60, 26], [0, 0, 0, 22, 30, 42, 10], [0, 0, 0, 0, 10, 28, 12], [0, 0, 0, 0, 0, 16, 18], [0, 0, 0, 0, 0, 0, 50], [0, 0, 0, 0, 0, 0, 0]])
-adjacencyMatrix = upperTriangularMatrixWithMainDiagonalAtZero(matrix7x7_2)
+adjacencyMatrix = upperTriangularMatrixWithMainDiagonalAtZero(matrix7x7)
 nodesTotal = len(adjacencyMatrix)
 runHamiltonianCycleAlgorithm()
