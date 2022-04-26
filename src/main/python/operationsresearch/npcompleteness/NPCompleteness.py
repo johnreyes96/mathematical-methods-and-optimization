@@ -68,15 +68,31 @@ def sortHamiltonianCyclesByWeight(hamiltonianCyclesList):
     return hamiltonianCyclesList['weight']
 
 
-# a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-matrix = np.array([[0, 5, 9, 7], [0, 0, 4, 10], [0, 0, 0, 12], [0, 0, 0, 0]])
-adjacencyMatrix = upperTriangularMatrixWithMainDiagonalAtZero(matrix)
-print(adjacencyMatrix)
+def unique(hamiltonianCycles):
+    hamiltonianCyclesDistinct = []
+    uniqueWeights = []
+    for item in hamiltonianCycles:
+        if item["weight"] not in uniqueWeights:
+            uniqueWeights.append(item["weight"])
+            hamiltonianCyclesDistinct.append(item)
+    return hamiltonianCyclesDistinct
+
+
+def runHamiltonianCycleAlgorithm():
+    print(adjacencyMatrix)
+    hamiltonianCycles = bruteForceSearch(nodesTotal)
+    hamiltonianCyclesDistinct = unique(hamiltonianCycles)
+    hamiltonianCyclesDistinct.sort(key=sortHamiltonianCyclesByWeight)
+    print(*hamiltonianCyclesDistinct, sep="\n")
+    # print("Cantidad de ciclos Hamiltonianos repetidos: " + str(len(hamiltonianCycles)))
+    print("Cantidad de ciclos Hamiltonianos diferentes: " + str(len(hamiltonianCyclesDistinct)))
+    hamiltonianCycleLessWeight = hamiltonianCyclesDistinct[0]
+    print("El ciclo Hamiltoniano de menor peso es: " + str(hamiltonianCycleLessWeight["cycle"]) + " con un peso de: " +
+          str(hamiltonianCycleLessWeight["weight"]))
+
+
+# matrix3x3 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+matrix4x4 = np.array([[0, 5, 9, 7], [0, 0, 4, 10], [0, 0, 0, 12], [0, 0, 0, 0]])
+adjacencyMatrix = upperTriangularMatrixWithMainDiagonalAtZero(matrix4x4)
 nodesTotal = len(adjacencyMatrix)
-hamiltonianCycles = bruteForceSearch(nodesTotal)
-hamiltonianCycles.sort(key=sortHamiltonianCyclesByWeight)
-print(*hamiltonianCycles, sep="\n")
-print("Cantidad de ciclos Hamiltonianos repetidos: " + str(len(hamiltonianCycles)))
-hamiltonianCycleLessWeight = hamiltonianCycles[0]
-print("El ciclo Hamiltoniano de menor peso es: " + str(hamiltonianCycleLessWeight["cycle"]) + " con un peso de: " +
-      str(hamiltonianCycleLessWeight["weight"]))
+runHamiltonianCycleAlgorithm()
