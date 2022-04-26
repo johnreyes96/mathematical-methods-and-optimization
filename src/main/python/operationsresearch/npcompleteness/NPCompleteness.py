@@ -33,8 +33,24 @@ def bruteForceSearch(nodesCount, hamiltonianCyclesList=None, hamiltonianCycle=""
     return hamiltonianCyclesList
 
 
+def getNodes():
+    switcher = {
+        1: ['A'],
+        2: ['A', 'B'],
+        3: ['A', 'B', 'C'],
+        4: ['A', 'B', 'C', 'D'],
+        5: ['A', 'B', 'C', 'D', 'E'],
+        6: ['A', 'B', 'C', 'D', 'E', 'F'],
+        7: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+        8: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+        9: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+        10: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+    }
+    return switcher.get(nodesTotal)
+
+
 def getHamiltonianCycle(cycle):
-    nodes = ['A', 'B', 'C', 'D']
+    nodes = getNodes()
     hamiltonianCycle = cycle[1:len(cycle)]
     initialNode = hamiltonianCycle[0:1]
     initialNodeReplaced = nodes[int(hamiltonianCycle[0:1])]
@@ -54,7 +70,7 @@ def getHamiltonianCycle(cycle):
 
 
 def getWeightFromHamiltonianCycle(formattedHamiltonianCycle):
-    nodesLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+    nodesLetters = getNodes()
     hamiltonianCycle = formattedHamiltonianCycle.split("-")
     weight = 0
     for nodeIndex in range(len(hamiltonianCycle) - 1):
@@ -91,8 +107,9 @@ def runHamiltonianCycleAlgorithm():
           str(hamiltonianCycleLessWeight["weight"]))
 
 
-# matrix3x3 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+matrix3x3 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 matrix4x4 = np.array([[0, 5, 9, 7], [0, 0, 4, 10], [0, 0, 0, 12], [0, 0, 0, 0]])
-adjacencyMatrix = upperTriangularMatrixWithMainDiagonalAtZero(matrix4x4)
+matrix7x7 = np.array([[0, 4, 13, 15, 28, 40, 24], [0, 0, 7, 20, 35, 6, 42], [0, 0, 0, 22, 24, 30, 10], [0, 0, 0, 0, 10, 20, 25], [0, 0, 0, 0, 0, 16, 18], [0, 0, 0, 0, 0, 0, 5], [0, 0, 0, 0, 0, 0, 0]])
+adjacencyMatrix = upperTriangularMatrixWithMainDiagonalAtZero(matrix7x7)
 nodesTotal = len(adjacencyMatrix)
 runHamiltonianCycleAlgorithm()
