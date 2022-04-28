@@ -6,22 +6,30 @@ def upperTriangularMatrixWithMainDiagonalAtZero(matrixNxN):
     return UpperTriangleMatrix + UpperTriangleMatrix.T - np.diag(np.diag(UpperTriangleMatrix))
 
 
+def getNearestNeighbor(adjacencyMatrix, hamiltonianCycle, currentRow):
+    flag = True
+    count = 0
+    nodeToCompare = None
+    while flag:
+        nodeToCompare = np.where(adjacencyMatrix[currentRow] == np.sort(adjacencyMatrix[currentRow])[count])[0][0]
+        if nodeToCompare in hamiltonianCycle:
+            count += 1
+        elif hamiltonianCycle[0] == nodeToCompare:
+            count += 1
+        else:
+            flag = False
+    return nodeToCompare
+
+
 def nearestNeighbor(adjacencyMatrix):
     for indexRow, row in enumerate(adjacencyMatrix):
-        rowToCompare = row
-        for node in range(len(row)):
-            print(str(rowToCompare)+": "+str(np.min(rowToCompare)))
-            if node == 0:
-                hamiltonianCycle = str(np.where(rowToCompare == 0)[0][0])
-                # hamiltonianCycle = str("-") + str(column)
-                rowToCompare = np.delete(rowToCompare, np.where(rowToCompare == np.min(rowToCompare))[0][0])
-            else:
-                rowToCompare = np.delete(rowToCompare, np.where(rowToCompare == np.min(rowToCompare))[0][0])
-            # rowToCompare = np.delete(rowToCompare, np.min(rowToCompare))
-            # print(rowToCompare)
-            # print(str(rowToCompare)+": "+str(np.min(rowToCompare)))
-            # print(str(np.min(row))+"|"+str(np.where(row == 0)[0][0]))
-        print("\n")
+        currentRow = indexRow
+        hamiltonianCycle = [np.where(adjacencyMatrix[currentRow] == [row[currentRow]])[0][0]]
+        for node in range(len(adjacencyMatrix) - 1):
+            currentRow = getNearestNeighbor(adjacencyMatrix, hamiltonianCycle, currentRow)
+            hamiltonianCycle.append(currentRow)
+        hamiltonianCycle.append(hamiltonianCycle[0])
+        print(*hamiltonianCycle, sep="-")
 
 
 def runNearestNeighborAlgorithm():
