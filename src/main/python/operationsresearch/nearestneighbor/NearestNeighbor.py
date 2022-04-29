@@ -22,6 +22,7 @@ def getNearestNeighbor(adjacencyMatrix, hamiltonianCycle, currentRow):
 
 
 def nearestNeighbor(adjacencyMatrix):
+    hamiltonianCyclesList = []
     for indexRow, row in enumerate(adjacencyMatrix):
         currentRow = indexRow
         hamiltonianCycle = [np.where(adjacencyMatrix[currentRow] == [row[currentRow]])[0][0]]
@@ -30,7 +31,25 @@ def nearestNeighbor(adjacencyMatrix):
             hamiltonianCycle.append(currentRow)
         hamiltonianCycle.append(hamiltonianCycle[0])
         hamiltonianCycleString = '-'.join(map(str, hamiltonianCycle))
-        print(getHamiltonianCycle(len(hamiltonianCycle) - 1, hamiltonianCycleString))
+        formattedHamiltonianCycle = getHamiltonianCycle(len(hamiltonianCycle) - 1, hamiltonianCycleString)
+        hamiltonianCycleWeight = getWeightFromHamiltonianCycle(len(hamiltonianCycle) - 1, formattedHamiltonianCycle,
+                                                               adjacencyMatrix)
+        hamiltonianCyclesList.append({
+            'cycle': formattedHamiltonianCycle,
+            'weight': hamiltonianCycleWeight
+        })
+    return hamiltonianCyclesList
+
+
+def getWeightFromHamiltonianCycle(nodesNumber, formattedHamiltonianCycle, adjacencyMatrix):
+    nodesLetters = getNodes(nodesNumber)
+    hamiltonianCycle = formattedHamiltonianCycle.split("-")
+    weight = 0
+    for nodeIndex in range(len(hamiltonianCycle) - 1):
+        rowIndex = nodesLetters.index(hamiltonianCycle[nodeIndex])
+        rowColumn = nodesLetters.index(hamiltonianCycle[nodeIndex+1])
+        weight += adjacencyMatrix[rowIndex][rowColumn]
+    return weight
 
 
 def getNodes(nodesNumber):
@@ -66,6 +85,10 @@ def getHamiltonianCycle(nodesNumber, hamiltonianCycle):
     return hamiltonianCycle
 
 
+def sortHamiltonianCyclesByWeight(hamiltonianCyclesList):
+    return hamiltonianCyclesList['weight']
+
+
 def runNearestNeighborAlgorithm():
     matrix7x7 = np.array(
         [[0, 10, 8, 5, 7, 20, 15],
@@ -78,7 +101,13 @@ def runNearestNeighborAlgorithm():
     )
     adjacencyMatrix = upperTriangularMatrixWithMainDiagonalAtZero(matrix7x7)
     print(str(adjacencyMatrix)+"\n")
-    nearestNeighbor(adjacencyMatrix)
+    hamiltonianCycles = nearestNeighbor(adjacencyMatrix)
+    hamiltonianCycles.sort(key=sortHamiltonianCyclesByWeight)
+    print(*hamiltonianCycles, sep="\n")
+    print("")
+    hamiltonianCycleLessWeight = hamiltonianCycles[0]
+    print("El ciclo Hamiltoniano de menor peso usando el algoritmo del vecino más cercano es: " +
+          str(hamiltonianCycleLessWeight["cycle"]) + " con un peso de: " + str(hamiltonianCycleLessWeight["weight"]))
 
 
 runNearestNeighborAlgorithm()
