@@ -29,7 +29,41 @@ def nearestNeighbor(adjacencyMatrix):
             currentRow = getNearestNeighbor(adjacencyMatrix, hamiltonianCycle, currentRow)
             hamiltonianCycle.append(currentRow)
         hamiltonianCycle.append(hamiltonianCycle[0])
-        print(*hamiltonianCycle, sep="-")
+        hamiltonianCycleString = '-'.join(map(str, hamiltonianCycle))
+        print(getHamiltonianCycle(len(hamiltonianCycle) - 1, hamiltonianCycleString))
+
+
+def getNodes(nodesNumber):
+    switcher = {
+        1: ['A'],
+        2: ['A', 'B'],
+        3: ['A', 'B', 'C'],
+        4: ['A', 'B', 'C', 'D'],
+        5: ['A', 'B', 'C', 'D', 'E'],
+        6: ['A', 'B', 'C', 'D', 'E', 'F'],
+        7: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+        8: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+        9: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+        10: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+    }
+    return switcher.get(nodesNumber)
+
+
+def getHamiltonianCycle(nodesNumber, hamiltonianCycle):
+    nodes = getNodes(nodesNumber)
+    initialNode = hamiltonianCycle[0:1]
+    initialNodeReplaced = nodes[int(hamiltonianCycle[0:1])]
+    count = 1
+    for nodeIndex in range(len(nodes)):
+        if nodeIndex == 0:
+            hamiltonianCycle = hamiltonianCycle.replace(initialNode, initialNodeReplaced, 1)
+        else:
+            nodeToReplace = hamiltonianCycle[nodeIndex + count]
+            nodeReplaced = nodes[int(hamiltonianCycle[nodeIndex + count])]
+            hamiltonianCycle = hamiltonianCycle.replace(nodeToReplace, nodeReplaced, 1)
+            count += 1
+    hamiltonianCycle = hamiltonianCycle.replace(initialNode, initialNodeReplaced)
+    return hamiltonianCycle
 
 
 def runNearestNeighborAlgorithm():
