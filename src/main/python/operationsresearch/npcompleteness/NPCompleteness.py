@@ -85,12 +85,40 @@ def sortHamiltonianCyclesByWeight(hamiltonianCyclesList):
 
 
 def unique(hamiltonianCycles):
+    hamiltonianCycles.sort(key=sortHamiltonianCyclesByWeight)
+    initialNode = hamiltonianCycles[0]["cycle"][0]
     hamiltonianCyclesDistinct = []
-    uniqueWeights = []
+    hamiltonianCyclesTemp = []
+    hamiltonianCyclesTempAux = []
+    countNodesWithEqualsWeight = 0
     for item in hamiltonianCycles:
-        if item["weight"] not in uniqueWeights:
-            uniqueWeights.append(item["weight"])
-            hamiltonianCyclesDistinct.append(item)
+        if initialNode == item["cycle"][0]:  # item["cycle"][0][::-1]
+            if len(hamiltonianCyclesTemp) == 0 or item["weight"] == hamiltonianCyclesTemp[countNodesWithEqualsWeight-1]["weight"]:
+                hamiltonianCyclesTemp.append(item)
+                countNodesWithEqualsWeight += 1
+            else:
+                hamiltonianCyclesTempAux.append(item)
+                if countNodesWithEqualsWeight == 2:
+                    hamiltonianCyclesDistinct.append(hamiltonianCyclesTemp[0])
+                    hamiltonianCyclesTemp = hamiltonianCyclesTempAux
+                    hamiltonianCyclesTempAux = []
+                    countNodesWithEqualsWeight = 1
+                else:
+                    listAux = []
+                    for node in range(int(countNodesWithEqualsWeight / 2)):
+                        if node == 0:
+                            listAux.append(hamiltonianCyclesTemp[node])
+                        else:
+                            flag = True
+                            for node2 in listAux:
+                                if node2["cycle"] == hamiltonianCyclesTemp[node]["cycle"][::-1]:
+                                    flag = False
+                            if flag:
+                                listAux.append(hamiltonianCyclesTemp[node])
+                    hamiltonianCyclesDistinct.extend(listAux)
+                    hamiltonianCyclesTemp = hamiltonianCyclesTempAux
+                    hamiltonianCyclesTempAux = []
+                    countNodesWithEqualsWeight = 1
     return hamiltonianCyclesDistinct
 
 
@@ -101,7 +129,7 @@ def runHamiltonianCycleAlgorithm():
     hamiltonianCyclesDistinct.sort(key=sortHamiltonianCyclesByWeight)
     print(*hamiltonianCyclesDistinct, sep="\n")
     print("")
-    # print("Cantidad de ciclos Hamiltonianos repetidos: " + str(len(hamiltonianCycles)))
+    print("Cantidad de ciclos Hamiltonianos repetidos: " + str(len(hamiltonianCycles)))
     print("Cantidad de ciclos Hamiltonianos diferentes: " + str(len(hamiltonianCyclesDistinct)))
     hamiltonianCycleLessWeight = hamiltonianCyclesDistinct[0]
     print("El ciclo Hamiltoniano de menor peso es: " + str(hamiltonianCycleLessWeight["cycle"]) + " con un peso de: " +
