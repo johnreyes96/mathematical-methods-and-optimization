@@ -91,6 +91,7 @@ def unique(hamiltonianCycles):
     hamiltonianCyclesTemp = []
     hamiltonianCyclesTempAux = []
     countNodesWithEqualsWeight = 0
+    lastNode = hamiltonianCycles[-1]
     for item in hamiltonianCycles:
         if initialNode == item["cycle"][0]:  # item["cycle"][0][::-1]
             if len(hamiltonianCyclesTemp) == 0 or item["weight"] == hamiltonianCyclesTemp[countNodesWithEqualsWeight-1]["weight"]:
@@ -104,21 +105,38 @@ def unique(hamiltonianCycles):
                     hamiltonianCyclesTempAux = []
                     countNodesWithEqualsWeight = 1
                 else:
-                    listAux = []
-                    for node in range(int(countNodesWithEqualsWeight / 2)):
-                        if node == 0:
-                            listAux.append(hamiltonianCyclesTemp[node])
+                    hamiltonianCyclesWithSameWeight = []
+                    for hamiltonianCycle in range(int(countNodesWithEqualsWeight)):
+                        if hamiltonianCycle == 0:
+                            hamiltonianCyclesWithSameWeight.append(hamiltonianCyclesTemp[hamiltonianCycle])
                         else:
                             flag = True
-                            for node2 in listAux:
-                                if node2["cycle"] == hamiltonianCyclesTemp[node]["cycle"][::-1]:
+                            for node in hamiltonianCyclesWithSameWeight:
+                                if node["cycle"] == hamiltonianCyclesTemp[hamiltonianCycle]["cycle"][::-1]:
                                     flag = False
                             if flag:
-                                listAux.append(hamiltonianCyclesTemp[node])
-                    hamiltonianCyclesDistinct.extend(listAux)
+                                hamiltonianCyclesWithSameWeight.append(hamiltonianCyclesTemp[hamiltonianCycle])
+                    hamiltonianCyclesDistinct.extend(hamiltonianCyclesWithSameWeight)
                     hamiltonianCyclesTemp = hamiltonianCyclesTempAux
                     hamiltonianCyclesTempAux = []
                     countNodesWithEqualsWeight = 1
+        elif item == lastNode:
+            hamiltonianCyclesTempAux.append(item)
+            if countNodesWithEqualsWeight == 2:
+                hamiltonianCyclesDistinct.append(hamiltonianCyclesTemp[0])
+            else:
+                hamiltonianCyclesWithSameWeight = []
+                for hamiltonianCycle in range(int(countNodesWithEqualsWeight)):
+                    if hamiltonianCycle == 0:
+                        hamiltonianCyclesWithSameWeight.append(hamiltonianCyclesTemp[hamiltonianCycle])
+                    else:
+                        flag = True
+                        for node in hamiltonianCyclesWithSameWeight:
+                            if node["cycle"] == hamiltonianCyclesTemp[hamiltonianCycle]["cycle"][::-1]:
+                                flag = False
+                        if flag:
+                            hamiltonianCyclesWithSameWeight.append(hamiltonianCyclesTemp[hamiltonianCycle])
+                hamiltonianCyclesDistinct.extend(hamiltonianCyclesWithSameWeight)
     return hamiltonianCyclesDistinct
 
 
