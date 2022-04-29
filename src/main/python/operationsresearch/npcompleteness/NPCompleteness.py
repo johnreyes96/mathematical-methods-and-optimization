@@ -147,7 +147,6 @@ def runHamiltonianCycleAlgorithm():
     hamiltonianCyclesDistinct.sort(key=sortHamiltonianCyclesByWeight)
     print(*hamiltonianCyclesDistinct, sep="\n")
     print("")
-    print("Cantidad de ciclos Hamiltonianos repetidos: " + str(len(hamiltonianCycles)))
     print("Cantidad de ciclos Hamiltonianos diferentes: " + str(len(hamiltonianCyclesDistinct)))
     hamiltonianCycleLessWeight = hamiltonianCyclesDistinct[0]
     print("El ciclo Hamiltoniano de menor peso es: " + str(hamiltonianCycleLessWeight["cycle"]) + " con un peso de: " +
